@@ -16,7 +16,7 @@ a:focus {
 
 
 .login-card {
-    min-height: 100vh;
+    min-height: 100%;
     background-size: 100%;
     -moz-background-size: 100%;
     -ms-background-size: 100%;
@@ -207,8 +207,12 @@ input:valid ~ label {
 .giris-yap-buton,
 .kayit-ol-buton,
 .sifre-hatirlat-buton {
-   
-    background: #0b0a32;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    background: linear-gradient(-135deg, #f6a625, #0b0a32);
+    background: -webkit-linear-gradient(-150deg, #f6a625, #0b0a32);
     display: block;
     text-align: center;
     text-decoration: none;
@@ -218,6 +222,7 @@ input:valid ~ label {
     padding: 10px;
     /* border-radius: 3px; */
     outline: none;
+    opacity: 0.8;
 }
 .forgot-and-create {
      margin: 20px 0px;

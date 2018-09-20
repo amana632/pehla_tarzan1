@@ -11,7 +11,7 @@ body {
 a:hover,
 a:focus {
     text-decoration: none;
-    color: #0b0a32;
+    color: #ffffff;
 }
 
 
@@ -70,7 +70,8 @@ a:focus {
 }
 .logo {
     height: auto;
-    padding: 30% 0px;
+    padding-bottom: 15%;
+    padding-top:10%;
 }
 /* form başlangıç stiller ------------------------------- */
 
@@ -220,7 +221,7 @@ input:valid ~ label {
     font-family: roboto;
     font-weight: 100;
     padding: 10px;
-    /* border-radius: 3px; */
+    border-radius: 20px;
     outline: none;
     opacity: 0.8;
 }
