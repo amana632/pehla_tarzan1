@@ -217,10 +217,10 @@ def generalservicepricing_update(emailid):
 def bank_details_update(emailid):
     serviceprovider = ServiceProvider.query.filter_by(emailid=emailid).first_or_404()
  
-    bank_name = request.form['bank_name']
-    branch_name = request.form['branch_name']
-    ifsc_code = request.form['ifsc_code']
-    account_number = request.form['account_number']
+    bank_name = request.json['bank_name']
+    branch_name = request.json['branch_name']
+    ifsc_code = request.json['ifsc_code']
+    account_number = request.json['account_number']
 
     serviceprovider.bank_name = bank_name
     serviceprovider.branch_name = branch_name
@@ -236,11 +236,11 @@ def bank_details_update(emailid):
 def discount_update(emailid):
     serviceprovider = ServiceProvider.query.filter_by(emailid=emailid).first_or_404()
  
-    disc_general_service = request.form['disc_general_service']
-    disc_roadside_assistance = request.form['disc_roadside_assistance']
-    disc_maintenence_repair = request.form['disc_maintenence_repair']
-    disc_dent_repairing = request.form['disc_dent_repairing']
-    disc_car_wash = request.form['disc_car_wash']
+    disc_general_service = request.json['disc_general_service']
+    disc_roadside_assistance = request.json['disc_roadside_assistance']
+    disc_maintenence_repair = request.json['disc_maintenence_repair']
+    disc_dent_repairing = request.json['disc_dent_repairing']
+    disc_car_wash = request.json['disc_car_wash']
 
     serviceprovider.disc_general_service = disc_general_service
     serviceprovider.disc_roadside_assistance = disc_roadside_assistance
@@ -257,11 +257,11 @@ def discount_update(emailid):
 def dropdown_update(emailid):
     serviceprovider = ServiceProvider.query.filter_by(emailid=emailid).first_or_404()
  
-    general_service = request.form['general_service']
-    roadside_assistance = request.form['roadside_assistance']
-    maintenence_repair = request.form['maintenence_repair']
-    dent_repairing = request.form['dent_repairing']
-    car_wash = request.form['car_wash']
+    general_service = request.json['general_service']
+    roadside_assistance = request.json['roadside_assistance']
+    maintenence_repair = request.json['maintenence_repair']
+    dent_repairing = request.json['dent_repairing']
+    car_wash = request.json['car_wash']
 
     serviceprovider.general_service = general_service
     serviceprovider.roadside_assistance = roadside_assistance

@@ -71,7 +71,7 @@
     <br/>
     <br/>
     <center>
-<input type="button" id="submit" value="Submit" class="btn btn-primary" style="color:rgb(255, 255, 255); width:90%">
+      <input type="button" id="submit" value="Submit" class="btn btn-primary" style="color:rgb(255, 255, 255); width:90%">
     </center>
 
 
@@ -102,9 +102,9 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script>
 
-  
-  //  var storage = window.localStorage;
-  //   var email = storage.getItem("emailid");
+
+    //  var storage = window.localStorage;
+    //   var email = storage.getItem("emailid");
     // document.forms["form1"].action = `https://localhost:8080/serviceproviderupdate/${email}`;
     // document.forms["form2"].submit(); 
 
@@ -126,8 +126,8 @@
             'Access-Control-Allow-Methods': 'PUT',
             'Access-Control-Allow-Headers': 'Content-Type'
           },
-          url: `http://localhost:8080/bank_details/${email}`,   
-           //Your api url
+          url: `http://localhost:8080/bank_details/${email}`,
+          //Your api url
           type: 'PUT',   //type is any HTTP method
           contentType: "application/json",
 
@@ -140,7 +140,7 @@
           dataType: "json",
 
           success: function () {
-            window.location.href="../../thank u page/thank.html";
+            window.location.href = "../../thank u page/thank.html";
           }
         })
           ;

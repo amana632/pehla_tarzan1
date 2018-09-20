@@ -21,36 +21,39 @@
   <link href="http://cdn-na.infragistics.com/igniteui/latest/css/themes/infragistics/infragistics.theme.css" rel="stylesheet">
   <link href="http://cdn-na.infragistics.com/igniteui/latest/css/structure/infragistics.css" rel="stylesheet">
   <link rel="stylesheet" media="screen" href="https://fonts.googleapis.com/css?family=Inconsolata" />
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+    crossorigin="anonymous">
 
   <style type="text/css">
-   
-    body{
-        background-color:white;
-        font-family:Arial, Helvetica, sans-serif;
-        font-weight:100;
-        font-size:100%;
-        overflow-x: hidden;
+    body {
+      background-color: white;
+      font-family: Arial, Helvetica, sans-serif;
+      font-weight: 100;
+      font-size: 100%;
+      overflow-x: hidden;
     }
-    .header{
-        font-family:200;
-        padding-top: 10%;
-        padding-bottom: 5%;
-        padding-left: 5%;
-        padding-right:5%;
-        font-size:35px;
-        background-color:white;
-        color:black;
-       
+
+    .header {
+      font-family: 200;
+      padding-top: 10%;
+      padding-bottom: 5%;
+      padding-left: 5%;
+      padding-right: 5%;
+      font-size: 35px;
+      background-color: white;
+      color: black;
+
     }
-    .combo-label{
-        border-radius: 5px;
+
+    .combo-label {
+      border-radius: 5px;
     }
-    
-    h,p{
-        font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-        font-weight:300;
-    }   
+
+    h,
+    p {
+      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+      font-weight: 300;
+    }
   </style>
 
 </head>
@@ -62,50 +65,50 @@
       <center>
         <h1 class="header">Mark all the services done at your shop</h1>
       </center>
-         <!-- <div class=".ui-widget-overlay"></div> -->
+      <!-- <div class=".ui-widget-overlay"></div> -->
       <div>
         <center>
-          <h4 class="combo-label" >General Service</h4>
-          <div id="general_service"></div>
-        </center>
-      </div>
-<br>
-      <div>
-        <center>
-          <h4 class="combo-label">Maintenance & Repair</h4>
-               <div id="maintenence_repair"></div>
-        </center>
-      </div>
-
-      <br>     
-      <div>
-        <center>
-          <h4 class="combo-label">Dent Repairing and Painting</h4>
-          <div id="dent_repairing"></div>
+          <h4 class="combo-label">General Service</h4>
+          <div id="singleSelectCombo"></div>
         </center>
       </div>
       <br>
-     
       <div>
         <center>
-          <h4 class="combo-label" >Car Wash and Detailing</h4>
-     
-          <div id="car_wash"></div>
+          <h4 class="combo-label">Maintenance & Repair</h4>
+          <div id="multiSelectCombo"></div>
         </center>
       </div>
 
-      <br>   
+      <br>
+      <div>
+        <center>
+          <h4 class="combo-label">Dent Repairing and Painting</h4>
+          <div id="checkboxSelectCombo"></div>
+        </center>
+      </div>
+      <br>
+
+      <div>
+        <center>
+          <h4 class="combo-label">Car Wash and Detailing</h4>
+
+          <div id="checkboxSelectCombo1"></div>
+        </center>
+      </div>
+
+      <br>
       <div>
         <center>
           <h4 class="combo-label">Road Side Assistance</h4>
-     
-          <div id="roadside_assistance"></div>
+
+          <div id="checkboxSelectCombo2"></div>
         </center>
       </div>
       <br />
       <center>
-          <input type="button" id="submit" value="Submit" class="btn btn-primary" style="color:rgb(255, 255, 255); width:90%">
-  </center>
+        <input value="Submit" type="button" id="submit">
+      </center>
 
     </form>
 
@@ -268,7 +271,7 @@
       ];
       $(function () {
 
-        $("#general_service").igCombo({
+        $("#singleSelectCombo").igCombo({
           width: 300,
           dataSource: GeneralService,
           textKey: "Name",
@@ -281,7 +284,7 @@
           dropDownOrientation: "bottom"
         });
 
-        $("#roadside_assistance").igCombo({
+        $("#multiSelectCombo").igCombo({
           width: 300,
           dataSource: MaintenanceRepair,
           textKey: "Name",
@@ -293,7 +296,7 @@
           dropDownOrientation: "bottom"
         });
 
-        $("#maintenence_repair").igCombo({
+        $("#checkboxSelectCombo").igCombo({
           width: 300,
           dataSource: DentRepairingandPainting,
           textKey: "Name",
@@ -305,7 +308,7 @@
           dropDownOrientation: "bottom"
         });
 
-        $("#dent_repairing").igCombo({
+        $("#checkboxSelectCombo1").igCombo({
           width: 300,
           dataSource: CarWashandDetailing,
           textKey: "Name",
@@ -317,7 +320,7 @@
           dropDownOrientation: "bottom"
         });
 
-        $("#car_wash").igCombo({
+        $("#checkboxSelectCombo2").igCombo({
           width: 300,
           dataSource: RoadSideAssistance,
           textKey: "Name",
@@ -331,15 +334,11 @@
 
       });
     });
-    </script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <script>
+    var t = document.getElementById("singleSelectCombo").value;
+    console.log(t);
+  </script>
 
-  
-  //  var storage = window.localStorage;
-  //   var email = storage.getItem("emailid");
-    // document.forms["form1"].action = `https://localhost:8080/serviceproviderupdate/${email}`;
-    // document.forms["form2"].submit(); 
+  <script>
 
     var storage = window.localStorage;
     var email = storage.getItem("emailid");
@@ -347,12 +346,12 @@
     $(document).ready(function () {
       $('#submit').click(function () {
         console.log("click");
-        var sendData1 = $('#general_service').val();
-        var sendData2 = $('#roadside_assistance').val();
-        var sendData3 = $('#maintenence_repair').val();
-        var sendData4 = $('#dent_repairing').val();
-        var sendData5 = $('#car_wash').val();
-
+        var sendData1 = document.getElementById("singleSelectCombo").innerHTML.split("hidden")[2].split("=")[1].split(">")[0];
+        var sendData2 = document.getElementById("multiSelectCombo").innerHTML.split("hidden")[2].split("=")[1].split(">")[0];
+        var sendData3 = document.getElementById("checkboxSelectCombo").innerHTML.split("hidden")[2].split("=")[1].split(">")[0];
+        var sendData4 = document.getElementById("checkboxSelectCombo1").innerHTML.split("hidden")[2].split("=")[1].split(">")[0];
+        var sendData5 = document.getElementById("checkboxSelectCombo2").innerHTML.split("hidden")[2].split("=")[1].split(">")[0];
+        console.log(sendData3);
         $.ajax({
           headers: {
 
@@ -360,8 +359,8 @@
             'Access-Control-Allow-Methods': 'PUT',
             'Access-Control-Allow-Headers': 'Content-Type'
           },
-          url: `http://localhost:8080/dropdown/${email}`,   
-           //Your api url
+          url: `http://localhost:8080/dropdown/${email}`,
+          //Your api url
           type: 'PUT',   //type is any HTTP method
           contentType: "application/json",
 
@@ -375,7 +374,7 @@
           dataType: "json",
 
           success: function () {
-            window.location.href="./login page-final/Bank details/2.html";
+            window.location.href = "./login page-final/Bank details/2.html";
           }
         })
           ;
@@ -383,8 +382,6 @@
       });
     });
   </script>
-
-
 
 </body>
 
