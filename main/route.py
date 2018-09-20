@@ -149,7 +149,7 @@ def get_service_provider():
 @app.route('/service_provider/<emailid>')
 def show_service_provider(emailid):
     serviceprovider = ServiceProvider.query.filter_by(emailid=emailid).first_or_404()
-    return jsonify(serviceprovider.data)
+    return serviceprovider_schema.jsonify(serviceprovider)
 
 @app.route("/user", methods=["POST"])
 def add_user():
@@ -162,7 +162,7 @@ def add_user():
 
     db.session.add(new_user)
     db.session.commit()
-    return jsonify(new_user)
+    return user_schema.jsonify(new_user)
 
 
 @app.route("/user", methods=["GET"])
@@ -179,7 +179,38 @@ def show_user(emailid):
 
 
 
+@app.route("/generalservicepricing/<emailid>", methods=["PUT"])
+def generalservicepricing_update(emailid):
+    serviceprovider = ServiceProvider.query.filter_by(emailid=emailid).first_or_404()
+ 
+    hb_twotosix = request.json['hb_twotosix']
+    hb_sixtoten = request.json['hb_sixtoten']
+    hb_tenabove = request.json['hb_tenabove']
+    sedan_sixtoten = request.json['sedan_sixtoten']
+    sedan_tentotwentyfive = request.json['sedan_tentotwentyfive']
+    sedan_twentyfiveabove = request.json['sedan_twentyfiveabove']
+    suv_twelvetotwenty = request.json['suv_twelvetotwenty']
+    suv_twentytoforty = request.json['suv_twentytoforty']
+    suv_fortyabove = request.json['suv_fortyabove']
+    muv_fifteentoforty = request.json['muv_fifteentoforty']
+    muv_fortyabove = request.json['muv_fortyabove']
 
+
+    serviceprovider.hb_twotosix = hb_twotosix
+    serviceprovider.hb_sixtoten = hb_sixtoten
+    serviceprovider.hb_tenabove = hb_tenabove
+    serviceprovider.sedan_sixtoten = sedan_sixtoten
+    serviceprovider.sedan_tentotwentyfive = sedan_tentotwentyfive
+    serviceprovider.sedan_twentyfiveabove = sedan_twentyfiveabove
+    serviceprovider.suv_twelvetotwenty = suv_twelvetotwenty
+    serviceprovider.suv_twentytoforty = suv_twentytoforty
+    serviceprovider.suv_fortyabove = suv_fortyabove
+    serviceprovider.muv_fifteentoforty = muv_fifteentoforty
+    serviceprovider.muv_fortyabove = muv_fortyabove
+ 
+
+    db.session.commit()
+    return serviceprovider_schema.jsonify(serviceprovider)
 
 
 

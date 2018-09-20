@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-
+<head lang="en">
+  <meta charset="UTF-8">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
     crossorigin="anonymous">
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -62,7 +62,7 @@
 
 <body>
 
-  <form class="form-inline" method="PUT" id="form1">
+  <form class="form-inline">
     <center>
       <div style="padding:10px">
 
@@ -85,77 +85,77 @@
               <td>Hatch Back</td>
               <td>2L to 6L</td>
               <td>
-                <input type="password" style="height:5%" class="form-control form-control-sm" id="colFormLabelSm">
+                <input type="number" style="height:5%" class="form-control form-control-sm" id="hb_twotosix">
               </td>
             </tr>
             <tr>
               <td>Hatch Back</td>
               <td>6L to 10L</td>
               <td>
-                <input type="password" style="height:5%" class="form-control form-control-sm" id="colFormLabelSm">
+                <input type="number" style="height:5%" class="form-control form-control-sm" id="hb_sixtoten">
               </td>
             </tr>
             <tr>
               <td>Hatch Back</td>
               <td>10L & Above</td>
               <td>
-                <input type="password" style="height:5%" class="form-control form-control-sm" id="colFormLabelSm">
+                <input type="number" style="height:5%" class="form-control form-control-sm" id="hb_tenabove">
               </td>
             </tr>
             <tr>
               <td>Sedan</td>
               <td>6L to 10L</td>
               <td>
-                <input type="password" style="height:5%" class="form-control form-control-sm" id="colFormLabelSm">
+                <input type="number" style="height:5%" class="form-control form-control-sm" id="sedan_sixtoten">
               </td>
             </tr>
             <tr>
               <td>Sedan</td>
               <td>10L to 25L</td>
               <td>
-                <input type="password" style="height:5%" class="form-control form-control-sm" id="colFormLabelSm">
+                <input type="number" style="height:5%" class="form-control form-control-sm" id="sedan_tentotwentyfive">
               </td>
             </tr>
             <tr>
               <td>Sedan</td>
               <td>25L & Above</td>
               <td>
-                <input type="password" style="height:5%" class="form-control form-control-sm" id="colFormLabelSm">
+                <input type="number" style="height:5%" class="form-control form-control-sm" id="sedan_twentyfiveabove">
               </td>
             </tr>
             <tr>
               <td>SUV</td>
               <td>12L to 20L</td>
               <td>
-                <input type="password" style="height:5%" class="form-control form-control-sm" id="colFormLabelSm">
+                <input type="number" style="height:5%" class="form-control form-control-sm" id="suv_twelvetotwenty">
               </td>
             </tr>
             <tr>
               <td>SUV</td>
               <td>20L to 40L</td>
               <td>
-                <input type="password" style="height:5%" class="form-control form-control-sm" id="colFormLabelSm">
+                <input type="number" style="height:5%" class="form-control form-control-sm" id="suv_twentytoforty">
               </td>
             </tr>
             <tr>
               <td>SUV</td>
               <td>40L & Above</td>
               <td>
-                <input type="password" style="height:5%" class="form-control form-control-sm" id="colFormLabelSm">
+                <input type="number" style="height:5%" class="form-control form-control-sm" id="suv_fortyabove">
               </td>
             </tr>
             <tr>
               <td>MUV</td>
               <td>15L to 40L</td>
               <td>
-                <input type="password" style="height:5%" class="form-control form-control-sm" id="colFormLabelSm">
+                <input type="number" style="height:5%" class="form-control form-control-sm" id="muv_fifteentoforty">
               </td>
             </tr>
             <tr>
               <td>MUV</td>
               <td>40L & Above</td>
               <td>
-                <input type="password" style="height:5%" class="form-control form-control-sm" id="colFormLabelSm">
+                <input type="number" style="height:5%" class="form-control form-control-sm" id="muv_fortyabove">
               </td>
             </tr>
             <tr>
@@ -166,19 +166,68 @@
           </tbody>
         </table>
       </div>
-      <button class="btn btn-primary" onclick="getCheckedCheckboxesFor();">
-        <a class="btn btn-primary"" href="./multiple drop down/show.html">Submit</a>
-      </button>
+      <!-- <input type="hidden" name="_method" value="PUT" /> -->
+      <input id="submit" type="button" value="Submit">
     </center>
   </form>
-  <script>
-    function getCheckedCheckboxesFor() {
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
-      var storage = window.localStorage;
-      var email = storage.getItem("emailid");
-      document.forms["form1"].action = `http://localhost:8080/serviceproviderupdate/${email}`;
-      document.forms["form1"].submit();
-    };
+  <script type="text/javascript">
+    var storage = window.localStorage;
+    var email = storage.getItem("emailid");
+
+    $(document).ready(function () {
+      $('#submit').click(function () {
+        console.log("click");
+        var sendData1 = $('#hb_twotosix').val();
+        var sendData2 = $('#hb_sixtoten').val();
+        var sendData3 = $('#hb_tenabove').val();
+        var sendData4 = $('#sedan_sixtoten').val();
+        var sendData5 = $('#sedan_tentotwentyfive').val();
+        var sendData6 = $('#sedan_twentyfiveabove').val();
+        var sendData7 = $('#suv_twelvetotwenty').val();
+        var sendData8 = $('#suv_twentytoforty').val();
+        var sendData9 = $('#suv_fortyabove').val();
+        var sendData10 = $('#muv_fifteentoforty').val();
+        var sendData11 = $('#muv_fortyabove').val();
+
+        $.ajax({
+          headers: {
+
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'PUT',
+            'Access-Control-Allow-Headers': 'Content-Type'
+          },
+          url: `http://localhost:8080/generalservicepricing/${email}`,    //Your api url
+          type: 'PUT',   //type is any HTTP method
+          contentType: "application/json",
+
+          data: JSON.stringify({
+            hb_twotosix: sendData1,
+            hb_sixtoten: sendData2,
+            hb_tenabove: sendData3,
+            sedan_sixtoten: sendData4,
+            sedan_tentotwentyfive: sendData5,
+            sedan_twentyfiveabove: sendData6,
+            suv_twelvetotwenty: sendData7,
+            suv_twentytoforty: sendData8,
+            suv_fortyabove: sendData9,
+            muv_fifteentoforty: sendData10,
+            muv_fortyabove: sendData11
+
+          }),      //Data as js object
+          dataType: "json",
+
+
+
+          success: function () {
+            console.log(1);
+          }
+        })
+          ;
+
+      });
+    });
   </script>
 
 </body>

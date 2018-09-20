@@ -63,7 +63,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-10 ">
-        <form action="./../table.html" class="form-horizontal" id='form1' method="POST">
+        <form>
           <fieldset>
 
             <!-- Form Name -->
@@ -457,9 +457,23 @@
 
   </script>
   <script type="text/javascript">
+    function slowAlert() {
+      var a = document.getElementById("password").value;
+      var b = document.getElementById("EmailID").value;
+      var c = document.getElementById("user_type").value;
+      console.log(a, b, c);
+      function reqListener() {
+        z = JSON.parse(this.responseText);
+        console.log(z);
+      }
+      var o = new XMLHttpRequest();
+      o.addEventListener("load", reqListener);
+      o.open("POST", "http://13.59.34.254/user");
+      o.send(`password=${a}`, `emailid=${b}`, `user_type=${c}`);
+    }
     function getCheckedCheckboxesFor() {
-      document.forms['form1'].action = 'http://localhost:8080/service_provider';
-      //  document.forms['form1'].target='frame_result1';
+      document.forms['form1'].action = 'http://localhost:8080/register_serviceprovider';
+      document.forms['form1'].target = './../table.html';
       document.forms['form1'].submit();
 
 
@@ -477,17 +491,10 @@
       //   o.addEventListener("load", reqListener);
       //  o.open("POST", `/service_provider/${temp}`);
       //   o.send(); 
-        var a = document.getElementById("password");
-        var b = document.getElementById("EmailID");
-        var c = document.getElementById("user_type");
-        function reqListener() {
-            z = JSON.parse(this.responseText);
-           console.log(z);
-        }
-        var o = new XMLHttpRequest();
-        o.addEventListener("load", reqListener);
-        o.open("POST", "http://localhost:8080/user");
-        o.send(`password=${a}`,`emailid=${b}`,`user_type=${c}`);
+
+
+
+
       // var checkboxes = document.querySelectorAll('input[name="' + checkboxName + '"]:checked'), values = [];
       // Array.prototype.forEach.call(checkboxes, function(el) {
       // values.push(el.value);
@@ -498,12 +505,10 @@
       var value = document.getElementById("emailid").value;
       var storage = window.localStorage;
       storage.setItem(key, value);
-      var timeoutID = window.setTimeout(slowAlert, 1000);
-      // window.location.href = "./../table.html";
-    }
-    function slowAlert() {
+      var timeoutID = window.setTimeout(slowAlert, 5000);
       window.location.href = "./../table.html";
-}
+    }
+
   </script>
 
 </body>
