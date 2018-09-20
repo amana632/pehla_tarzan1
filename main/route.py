@@ -253,5 +253,26 @@ def discount_update(emailid):
     return serviceprovider_schema.jsonify(serviceprovider)
 
 
+@app.route("/dropdown/<emailid>", methods=["PUT"])
+def dropdown_update(emailid):
+    serviceprovider = ServiceProvider.query.filter_by(emailid=emailid).first_or_404()
+ 
+    general_service = request.form['general_service']
+    roadside_assistance = request.form['roadside_assistance']
+    maintenence_repair = request.form['maintenence_repair']
+    dent_repairing = request.form['dent_repairing']
+    car_wash = request.form['car_wash']
+
+    serviceprovider.general_service = general_service
+    serviceprovider.roadside_assistance = roadside_assistance
+    serviceprovider.maintenence_repair = maintenence_repair
+    serviceprovider.dent_repairing = dent_repairing
+    serviceprovider.car_wash = car_wash
+ 
+
+    db.session.commit()
+    return serviceprovider_schema.jsonify(serviceprovider)
+
+
 
 
