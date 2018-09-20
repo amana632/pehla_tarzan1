@@ -104,7 +104,7 @@ def register_serviceprovider():
     gst = request.form['gst']
     service_category = request.form['category']
     pickup_facility = request.form['pickup_facility']
-    twentyfourhour_facility = request.form['24hr']
+    twentyfourhour_facility = request.form['twentyfour']
     general_service = request.form['general_service']
     roadside_assistance = request.form['roadside_assistance']
     maintenence_repair = request.form['maintenence_repair']
