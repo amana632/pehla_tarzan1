@@ -213,11 +213,44 @@ def generalservicepricing_update(emailid):
     return serviceprovider_schema.jsonify(serviceprovider)
 
 
+@app.route("/bank_details/<emailid>", methods=["PUT"])
+def bank_details_update(emailid):
+    serviceprovider = ServiceProvider.query.filter_by(emailid=emailid).first_or_404()
+ 
+    bank_name = request.form['bank_name']
+    branch_name = request.form['branch_name']
+    ifsc_code = request.form['ifsc_code']
+    account_number = request.form['account_number']
+
+    serviceprovider.bank_name = bank_name
+    serviceprovider.branch_name = branch_name
+    serviceprovider.ifsc_code = ifsc_code
+    serviceprovider.account_number = account_number
+ 
+
+    db.session.commit()
+    return serviceprovider_schema.jsonify(serviceprovider)
 
 
+@app.route("/discount/<emailid>", methods=["PUT"])
+def discount_update(emailid):
+    serviceprovider = ServiceProvider.query.filter_by(emailid=emailid).first_or_404()
+ 
+    disc_general_service = request.form['disc_general_service']
+    disc_roadside_assistance = request.form['disc_roadside_assistance']
+    disc_maintenence_repair = request.form['disc_maintenence_repair']
+    disc_dent_repairing = request.form['disc_dent_repairing']
+    disc_car_wash = request.form['disc_car_wash']
 
+    serviceprovider.disc_general_service = disc_general_service
+    serviceprovider.disc_roadside_assistance = disc_roadside_assistance
+    serviceprovider.disc_maintenence_repair = disc_maintenence_repair
+    serviceprovider.disc_dent_repairing = disc_dent_repairing
+    serviceprovider.disc_car_wash = disc_car_wash
+ 
 
-
+    db.session.commit()
+    return serviceprovider_schema.jsonify(serviceprovider)
 
 
 
