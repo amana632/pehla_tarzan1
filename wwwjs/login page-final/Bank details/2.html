@@ -51,8 +51,28 @@
     </div>
     <br/>
     <center>
-      <button class="btn btn-primary" style="color:white; width:50%" onclick="check()">Check</button>
-    </center>
+        <button type='button' id="demo" class="btn btn-primary" style="color:white; width:50%;">Check</button>    
+</center>
+<script>
+       document.getElementById("demo").onclick = function() {
+          var temp = 'https://ifsc.razorpay.com/';
+          temp += document.getElementById("IFSCCode").value;
+          console.log(temp);
+          var o;
+          function reqListener() {
+            o = JSON.parse(this.responseText);
+            console.log(o);
+            document.getElementById("BankName").value = o.BANK;
+            document.getElementById("BranchName").value = o.BRANCH;
+          }
+    
+          var oReq = new XMLHttpRequest();
+          oReq.addEventListener("load", reqListener);
+          oReq.open("GET", temp);
+          oReq.send();
+        }
+      </script>
+
 
     <br/>
     <div class="form-group row" style="height:10%;">
@@ -76,29 +96,6 @@
 
 
   </form>
-
-  <script>
-    function check() {
-      var temp = 'https://ifsc.razorpay.com/';
-      temp += document.getElementById("IFSCCode").value;
-      console.log(temp);
-      var o;
-      function reqListener() {
-        o = JSON.parse(this.responseText);
-        console.log(o);
-        document.getElementById("BankName").value = o.BANK;
-        document.getElementById("BranchName").value = o.BRANCH;
-      }
-
-      var oReq = new XMLHttpRequest();
-      oReq.addEventListener("load", reqListener);
-      oReq.open("GET", temp);
-      oReq.send();
-
-
-
-    }
-  </script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script>
 
@@ -148,7 +145,5 @@
       });
     });
   </script>
-
 </body>
-
 </html>
