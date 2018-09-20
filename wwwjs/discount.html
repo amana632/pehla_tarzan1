@@ -61,7 +61,7 @@ input{
 <p style="height:10vh;width:80vw;">
     <label>General Services
         <br/>
-    <input type="text" name="General_Services" style="width:80vw;" required>
+    <input type="text" id="disc_general_service" name="General_Services" style="width:80vw;" required>
     </label>
 </p>
 </center>
@@ -69,7 +69,7 @@ input{
 <p style="height:10vh;width:80vw;">
     <label>Road Side Assistance
             <br/>
-    <input type="text" name="Road_Side_Assistance" style="width:80vw;" required >
+    <input type="text" id="disc_roadside_assistance" name="Road_Side_Assistance" style="width:80vw;" required >
     </label> 
 </p>
 </center>
@@ -77,13 +77,13 @@ input{
     <p style="height:10vh;width:80vw;">
         <label>Maintaince And Repair<br>
         </label>
-        <input type="text" name="email_address" style="width:80vw;" required>
+        <input type="text" id="disc_maintenence_repair" name="email_address" style="width:80vw;" required>
     </p>
 </center>
 <center>
     <p style="height:10vh;width:80vw;">
         <label>Dent Repairing And Painting<br>
-        <input type="text" name="Dent_Repairing_And_Painting" style="width:80vw;" required>
+        <input type="text" id="disc_dent_repairing" name="Dent_Repairing_And_Painting" style="width:80vw;" required>
         </label>
     </p>
 </center>
@@ -91,7 +91,7 @@ input{
 <center>
     <p style="height:10vh;width:80vw;">
         <label>Car Wash And Detailing<br>
-        <input type="text" name="Car_Wash_And_Detailing" style="width:80vw;" required >
+        <input type="text" id="disc_car_wash" name="Car_Wash_And_Detailing" style="width:80vw;" required >
         </label>
     </p> 
 </center>
@@ -114,9 +114,59 @@ input{
 </label>
 </p> -->
 <center>
-<button class="btn btn-primary">Submit</button>
+        <input type="button" id="submit" value="Submit" class="btn btn-primary" style="color:rgb(255, 255, 255); width:90%">
 </center>
 </form>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script>
 
+  
+  //  var storage = window.localStorage;
+  //   var email = storage.getItem("emailid");
+    // document.forms["form1"].action = `https://localhost:8080/serviceproviderupdate/${email}`;
+    // document.forms["form2"].submit(); 
+
+    var storage = window.localStorage;
+    var email = storage.getItem("emailid");
+
+    $(document).ready(function () {
+      $('#submit').click(function () {
+        console.log("click");
+        var sendData1 = $('#disc_general_service').val();
+        var sendData2 = $('#disc_roadside_assistance').val();
+        var sendData3 = $('#disc_maintenence_repair').val();
+        var sendData4 = $('#disc_dent_repairing').val();
+        var sendData5 = $('#disc_car_wash').val();
+
+        $.ajax({
+          headers: {
+
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'PUT',
+            'Access-Control-Allow-Headers': 'Content-Type'
+          },
+          url: `http://localhost:8080/discount/${email}`,   
+           //Your api url
+          type: 'PUT',   //type is any HTTP method
+          contentType: "application/json",
+
+          data: JSON.stringify({
+            disc_general_service: sendData1,
+            disc_roadside_assistance: sendData2,
+            disc_maintenence_repair: sendData3,
+            disc_dent_repairing: sendData4,
+            disc_car_wash: sendData5,
+          }),      //Data as js object
+          dataType: "json",
+
+          success: function () {
+            window.location.href="./login page-final/Bank details/2.html";
+          }
+        })
+          ;
+
+      });
+    });
+  </script>
 </body>
 </html>

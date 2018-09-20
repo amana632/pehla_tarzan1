@@ -71,9 +71,7 @@
     <br/>
     <br/>
     <center>
-      <button class="btn btn-primary" onclick="redirect();" style="width: 80%">SUBMIT</button>
-
-      <!-- href="../../thank u page/thank.html" -->
+<input type="button" id="submit" value="Submit" class="btn btn-primary" style="color:rgb(255, 255, 255); width:90%">
     </center>
 
 
@@ -100,19 +98,56 @@
 
 
     }
+  </script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script>
+
+  
+  //  var storage = window.localStorage;
+  //   var email = storage.getItem("emailid");
+    // document.forms["form1"].action = `https://localhost:8080/serviceproviderupdate/${email}`;
+    // document.forms["form2"].submit(); 
+
     var storage = window.localStorage;
     var email = storage.getItem("emailid");
-    document.forms["form1"].action = `https://localhost:8080/serviceproviderupdate/${email}`;
-    document.forms["form2"].submit();
 
+    $(document).ready(function () {
+      $('#submit').click(function () {
+        console.log("click");
+        var sendData1 = $('#AccountNumber').val();
+        var sendData2 = $('#IFSCCode').val();
+        var sendData3 = $('#BankName').val();
+        var sendData4 = $('#BranchName').val();
 
-    function redirect() {
-      // window.location.href = "../../thank u page/thank.html";
-      window.location.href = "https://www.google.com";
-    }
+        $.ajax({
+          headers: {
 
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'PUT',
+            'Access-Control-Allow-Headers': 'Content-Type'
+          },
+          url: `http://localhost:8080/bank_details/${email}`,   
+           //Your api url
+          type: 'PUT',   //type is any HTTP method
+          contentType: "application/json",
+
+          data: JSON.stringify({
+            bank_name: sendData3,
+            branch_name: sendData4,
+            ifsc_code: sendData2,
+            account_number: sendData1,
+          }),      //Data as js object
+          dataType: "json",
+
+          success: function () {
+            window.location.href="../../thank u page/thank.html";
+          }
+        })
+          ;
+
+      });
+    });
   </script>
-
 
 </body>
 

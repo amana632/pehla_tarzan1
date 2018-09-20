@@ -66,14 +66,14 @@
       <div>
         <center>
           <h4 class="combo-label" >General Service</h4>
-          <div id="singleSelectCombo"></div>
+          <div id="general_service"></div>
         </center>
       </div>
 <br>
       <div>
         <center>
           <h4 class="combo-label">Maintenance & Repair</h4>
-               <div id="multiSelectCombo"></div>
+               <div id="maintenence_repair"></div>
         </center>
       </div>
 
@@ -81,7 +81,7 @@
       <div>
         <center>
           <h4 class="combo-label">Dent Repairing and Painting</h4>
-          <div id="checkboxSelectCombo"></div>
+          <div id="dent_repairing"></div>
         </center>
       </div>
       <br>
@@ -90,7 +90,7 @@
         <center>
           <h4 class="combo-label" >Car Wash and Detailing</h4>
      
-          <div id="checkboxSelectCombo1"></div>
+          <div id="car_wash"></div>
         </center>
       </div>
 
@@ -99,15 +99,13 @@
         <center>
           <h4 class="combo-label">Road Side Assistance</h4>
      
-          <div id="checkboxSelectCombo2"></div>
+          <div id="roadside_assistance"></div>
         </center>
       </div>
       <br />
       <center>
-        <button class="btn btn-primary" value="submit" style="width:70%;">
-         Submit
-        </button>
-      </center>
+          <input type="button" id="submit" value="Submit" class="btn btn-primary" style="color:rgb(255, 255, 255); width:90%">
+  </center>
 
     </form>
 
@@ -270,7 +268,7 @@
       ];
       $(function () {
 
-        $("#singleSelectCombo").igCombo({
+        $("#general_service").igCombo({
           width: 300,
           dataSource: GeneralService,
           textKey: "Name",
@@ -283,7 +281,7 @@
           dropDownOrientation: "bottom"
         });
 
-        $("#multiSelectCombo").igCombo({
+        $("#roadside_assistance").igCombo({
           width: 300,
           dataSource: MaintenanceRepair,
           textKey: "Name",
@@ -295,7 +293,7 @@
           dropDownOrientation: "bottom"
         });
 
-        $("#checkboxSelectCombo").igCombo({
+        $("#maintenence_repair").igCombo({
           width: 300,
           dataSource: DentRepairingandPainting,
           textKey: "Name",
@@ -307,7 +305,7 @@
           dropDownOrientation: "bottom"
         });
 
-        $("#checkboxSelectCombo1").igCombo({
+        $("#dent_repairing").igCombo({
           width: 300,
           dataSource: CarWashandDetailing,
           textKey: "Name",
@@ -319,7 +317,7 @@
           dropDownOrientation: "bottom"
         });
 
-        $("#checkboxSelectCombo2").igCombo({
+        $("#car_wash").igCombo({
           width: 300,
           dataSource: RoadSideAssistance,
           textKey: "Name",
@@ -333,8 +331,57 @@
 
       });
     });
-    var t = document.getElementById("singleSelectCombo").value;
-    console.log(t);
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script>
+
+  
+  //  var storage = window.localStorage;
+  //   var email = storage.getItem("emailid");
+    // document.forms["form1"].action = `https://localhost:8080/serviceproviderupdate/${email}`;
+    // document.forms["form2"].submit(); 
+
+    var storage = window.localStorage;
+    var email = storage.getItem("emailid");
+
+    $(document).ready(function () {
+      $('#submit').click(function () {
+        console.log("click");
+        var sendData1 = $('#general_service').val();
+        var sendData2 = $('#roadside_assistance').val();
+        var sendData3 = $('#maintenence_repair').val();
+        var sendData4 = $('#dent_repairing').val();
+        var sendData5 = $('#car_wash').val();
+
+        $.ajax({
+          headers: {
+
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'PUT',
+            'Access-Control-Allow-Headers': 'Content-Type'
+          },
+          url: `http://localhost:8080/dropdown/${email}`,   
+           //Your api url
+          type: 'PUT',   //type is any HTTP method
+          contentType: "application/json",
+
+          data: JSON.stringify({
+            general_service: sendData1,
+            roadside_assistance: sendData2,
+            maintenence_repair: sendData3,
+            dent_repairing: sendData4,
+            car_wash: sendData5,
+          }),      //Data as js object
+          dataType: "json",
+
+          success: function () {
+            window.location.href="./login page-final/Bank details/2.html";
+          }
+        })
+          ;
+
+      });
+    });
   </script>
 
 
